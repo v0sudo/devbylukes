@@ -52,7 +52,7 @@ export default async function HomePage() {
               </Link>{" "}
               on X <span className="mx-3">/</span> Edit this page on{" "}
               <Link
-                href="https://github.com/v0sudo/dev-by-lukes"
+                href="https://github.com/v0sudo/devbylukes"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 font-medium text-neutral-900 transition-colors hover:text-blue-500 dark:text-neutral-100 dark:hover:text-blue-400"
