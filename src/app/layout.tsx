@@ -9,6 +9,25 @@ export const metadata: Metadata = {
   title: "Dev By Lukes",
   description: "Showcasing developers named Luke from around the world",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
+  openGraph: {
+    title: "Dev By Lukes",
+    description: "Showcasing developers named Luke from around the world",
+    images: ["/og-image.png"],
+    url: "https://devbylukes.com",
+    siteName: "Dev By Lukes",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  alternates: {
+    canonical: "https://devbylukes.com",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 const geist = Geist({
