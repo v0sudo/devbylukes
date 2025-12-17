@@ -44,6 +44,7 @@ export default function RootLayout({
           gtag("config", "G-DC16T3K5M5");
         `}
       </Script>
+      <meta name="apple-mobile-web-app-title" content="DevByLukes" />
       <body>
         <ThemeProvider
           attribute="class"
