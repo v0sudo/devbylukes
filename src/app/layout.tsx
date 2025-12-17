@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dev By Lukes",
     description: "Showcasing developers named Luke from around the world",
-    images: ["/og-image.png"],
+    images: ["/og_image.png"],
     url: "https://devbylukes.com",
     siteName: "Dev By Lukes",
     locale: "en_US",
