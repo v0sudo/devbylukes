@@ -113,7 +113,7 @@ export function DeveloperCard({ developer }: { developer: Developer }) {
                 {developer.notableProjects.map((project, index) => (
                   <a
                     key={index}
-                    href={project.url}
+                    href={project.url + "?utm_source=devbylukes&ref=devbylukes"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 rounded-md border border-neutral-200 bg-white px-2.5 py-1.5 text-sm text-neutral-700 transition-colors hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800"
