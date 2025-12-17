@@ -19,7 +19,7 @@ type DeveloperWithProjects = {
 
 async function getDevelopers(): Promise<DeveloperWithProjects[]> {
   const developers = await db.developer.findMany({
-    orderBy: { createdAt: "desc" },
+    orderBy: { id: "asc" },
   });
 
   // Type cast notableProjects from JsonValue to the expected type

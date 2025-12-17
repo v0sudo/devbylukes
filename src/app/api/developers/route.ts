@@ -28,14 +28,19 @@ type CreateDeveloperBody = {
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as CreateDeveloperBody;
-    const { name, twitter, github, website, description, notableProjects } = body;
+    const { name, twitter, github, website, description, notableProjects } =
+      body;
 
     if (!name) {
       return NextResponse.json({ error: "Name is required" }, { status: 400 });
     }
 
     // Validate notable projects limit
-    if (notableProjects && Array.isArray(notableProjects) && notableProjects.length > 2) {
+    if (
+      notableProjects &&
+      Array.isArray(notableProjects) &&
+      notableProjects.length > 2
+    ) {
       return NextResponse.json(
         { error: "Maximum of 2 notable projects allowed" },
         { status: 400 },
@@ -105,7 +110,7 @@ export async function POST(request: Request) {
 export async function GET() {
   try {
     const developers = await db.developer.findMany({
-      orderBy: { createdAt: "desc" },
+      orderBy: { id: "asc" },
     });
     return NextResponse.json(developers);
   } catch (error) {
