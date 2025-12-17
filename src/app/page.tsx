@@ -1,35 +1,79 @@
+import { db } from "@/server/db";
+import { DevelopersList } from "@/components/developers-list";
 import Link from "next/link";
+import { Github } from "lucide-react";
 
-export default function HomePage() {
+type DeveloperWithProjects = {
+  id: number;
+  name: string;
+  twitter: string | null;
+  github: string | null;
+  website: string | null;
+  description: string | null;
+  avatar: string | null;
+  notableProjects: Array<{ name: string; url: string }> | null;
+  editUuid: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+async function getDevelopers(): Promise<DeveloperWithProjects[]> {
+  const developers = await db.developer.findMany({
+    orderBy: { createdAt: "desc" },
+  });
+
+  // Type cast notableProjects from JsonValue to the expected type
+  return developers.map((dev) => ({
+    ...dev,
+    notableProjects:
+      (dev.notableProjects as Array<{ name: string; url: string }> | null) ??
+      null,
+  })) as DeveloperWithProjects[];
+}
+
+export default async function HomePage() {
+  const developers = await getDevelopers();
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
+    <main className="min-h-screen bg-linear-to-b from-neutral-50 to-neutral-100 dark:from-neutral-950 dark:to-neutral-900">
+      <div className="container mx-auto px-4 py-8">
+        <div className="mx-auto max-w-4xl">
+          {/* Built by Credit */}
+          <div className="mb-6 text-center">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Built by{" "}
+              <Link
+                href="https://twitter.com/v0sudo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-medium text-neutral-900 transition-colors hover:text-blue-500 dark:text-neutral-100 dark:hover:text-blue-400"
+              >
+                @v0sudo
+              </Link>{" "}
+              on X <span className="mx-3">/</span> Edit this page on{" "}
+              <Link
+                href="https://github.com/v0sudo/dev-by-lukes"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-medium text-neutral-900 transition-colors hover:text-blue-500 dark:text-neutral-100 dark:hover:text-blue-400"
+              >
+                GitHub
+              </Link>
+            </p>
+          </div>
+
+          {/* Header */}
+          <div className="mb-8 text-center">
+            <h1 className="mb-2 text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl dark:text-neutral-100">
+              Dev By Lukes
+            </h1>
+            <p className="mb-4 text-lg text-neutral-600 dark:text-neutral-400">
+              Showcasing developers named Luke from around the world
+            </p>
+          </div>
+
+          {/* Developers List with Search */}
+          <DevelopersList developers={developers} />
         </div>
       </div>
     </main>
