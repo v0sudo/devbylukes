@@ -28,6 +28,19 @@ function getFaviconUrl(url: string): string {
   }
 }
 
+function getDomainName(url: string): string {
+  try {
+    // Ensure URL has protocol for URL constructor
+    const urlWithProtocol = url.startsWith("http") ? url : `https://${url}`;
+    const domain = new URL(urlWithProtocol).hostname;
+    // Remove www. prefix if present
+    return domain.replace(/^www\./, "");
+  } catch {
+    // Fallback: just strip protocol
+    return url.replace(/^https?:\/\//, "").replace(/^www\./, "");
+  }
+}
+
 export function DeveloperCard({ developer }: { developer: Developer }) {
   const [showEditModal, setShowEditModal] = useState(false);
 
@@ -87,7 +100,7 @@ export function DeveloperCard({ developer }: { developer: Developer }) {
                 href={`https://github.com/${developer.github}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-sm text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+                className="flex items-center gap-1.5 text-sm text-neutral-600 transition-colors hover:text-blue-500 dark:text-neutral-400 dark:hover:text-blue-400"
               >
                 <Github className="h-4 w-4" />
                 <span>{developer.github}</span>
@@ -100,13 +113,38 @@ export function DeveloperCard({ developer }: { developer: Developer }) {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-sm text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+                className="flex items-center gap-1.5 text-sm text-neutral-600 transition-colors hover:text-blue-500 dark:text-neutral-400 dark:hover:text-blue-400"
               >
                 <Globe className="h-4 w-4" />
-                <span>Website</span>
+                <span>{getDomainName(developer.website)}</span>
               </a>
             )}
           </div>
+<<<<<<< HEAD
+          {developer.notableProjects && (
+            <div className="flex flex-wrap gap-2">
+              {developer.notableProjects.map((project, index) => (
+                <a
+                  key={index}
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 rounded-md border border-neutral-200 bg-white px-2.5 py-1.5 text-sm text-neutral-700 transition-colors hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800"
+                >
+                  <Image
+                    src={getFaviconUrl(project.url)}
+                    alt={project.name}
+                    width={16}
+                    height={16}
+                    className="h-4 w-4"
+                    unoptimized
+                  />
+                  <span>{project.name}</span>
+                </a>
+              ))}
+            </div>
+          )}
+=======
           {developer.notableProjects &&
             developer.notableProjects.length > 0 && (
               <div className="flex flex-wrap gap-2">
@@ -131,6 +169,7 @@ export function DeveloperCard({ developer }: { developer: Developer }) {
                 ))}
               </div>
             )}
+>>>>>>> 8bb3daea521fff600d28f99d311e89b68b5488e2
         </div>
       </div>
 
