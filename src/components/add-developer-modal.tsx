@@ -120,7 +120,12 @@ export function AddDeveloperModal() {
         <DialogTrigger asChild>
           <Button>Add a Luke</Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[500px]">
+        <DialogContent
+          className="max-h-[80dvh] overflow-y-auto sm:max-h-none sm:max-w-[500px]"
+          onInteractOutside={(e) => {
+            e.preventDefault();
+          }}
+        >
           <DialogHeader>
             <DialogTitle>Add a Luke</DialogTitle>
             <DialogDescription>
@@ -229,7 +234,10 @@ export function AddDeveloperModal() {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  setOpen(false);
+                  setDuplicateError(false);
+                }}
               >
                 Cancel
               </Button>
