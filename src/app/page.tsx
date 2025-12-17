@@ -17,6 +17,9 @@ type DeveloperWithProjects = {
   updatedAt: Date;
 };
 
+// Disable caching to ensure fresh data on every request
+export const revalidate = 0;
+
 async function getDevelopers(): Promise<DeveloperWithProjects[]> {
   const developers = await db.developer.findMany({
     orderBy: { id: "asc" },

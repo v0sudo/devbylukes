@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import {
   Dialog,
@@ -20,7 +19,6 @@ import { User, Copy, Check } from "lucide-react";
 import { ProjectsInput } from "@/components/projects-input";
 
 export function AddDeveloperModal() {
-  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [editUuid, setEditUuid] = useState<string | null>(null);
@@ -90,8 +88,6 @@ export function AddDeveloperModal() {
         description: "",
         notableProjects: [],
       });
-      // Refresh the page to show the new developer
-      router.refresh();
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Failed to submit. Please try again.");
@@ -297,6 +293,7 @@ export function AddDeveloperModal() {
             <Button
               onClick={() => {
                 setShowSuccess(false);
+                window.location.reload();
               }}
             >
               Done
