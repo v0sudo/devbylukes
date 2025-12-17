@@ -40,7 +40,7 @@ export function DevelopersList({ developers }: { developers: Developer[] }) {
       {/* Search Bar */}
       <div className="mb-8 flex items-center justify-center gap-2">
         <AddDeveloperModal />
-        <div className="relative max-w-md">
+        <div className="relative w-lg max-w-xl">
           <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-neutral-400" />
           <Input
             type="text"

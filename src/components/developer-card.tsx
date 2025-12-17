@@ -120,13 +120,12 @@ export function DeveloperCard({ developer }: { developer: Developer }) {
               </a>
             )}
           </div>
-<<<<<<< HEAD
           {developer.notableProjects && (
             <div className="flex flex-wrap gap-2">
               {developer.notableProjects.map((project, index) => (
                 <a
                   key={index}
-                  href={project.url}
+                  href={project.url + "?utm_source=devbylukes&ref=devbylukes"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 rounded-md border border-neutral-200 bg-white px-2.5 py-1.5 text-sm text-neutral-700 transition-colors hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800"
@@ -144,32 +143,6 @@ export function DeveloperCard({ developer }: { developer: Developer }) {
               ))}
             </div>
           )}
-=======
-          {developer.notableProjects &&
-            developer.notableProjects.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {developer.notableProjects.map((project, index) => (
-                  <a
-                    key={index}
-                    href={project.url + "?utm_source=devbylukes&ref=devbylukes"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 rounded-md border border-neutral-200 bg-white px-2.5 py-1.5 text-sm text-neutral-700 transition-colors hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800"
-                  >
-                    <Image
-                      src={getFaviconUrl(project.url)}
-                      alt={project.name}
-                      width={16}
-                      height={16}
-                      className="h-4 w-4"
-                      unoptimized
-                    />
-                    <span>{project.name}</span>
-                  </a>
-                ))}
-              </div>
-            )}
->>>>>>> 8bb3daea521fff600d28f99d311e89b68b5488e2
         </div>
       </div>
 
