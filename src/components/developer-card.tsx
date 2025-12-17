@@ -95,7 +95,9 @@ export function DeveloperCard({ developer }: { developer: Developer }) {
             )}
             {developer.website && (
               <a
-                href={developer.website}
+                href={
+                  developer.website + "?utm_source=devbylukes&ref=devbylukes"
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 text-sm text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
