@@ -46,12 +46,12 @@ export default async function HomePage() {
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
               Built by{" "}
               <Link
-                href="https://twitter.com/v0sudo"
+                href="https://twitter.com/CodeWizard"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 font-medium text-neutral-900 transition-colors hover:text-blue-500 dark:text-neutral-100 dark:hover:text-blue-400"
               >
-                @v0sudo
+                @CodeWizard
               </Link>{" "}
               on X <span className="mx-3">/</span> Edit this page on{" "}
               <Link
